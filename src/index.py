@@ -106,9 +106,9 @@ def execucao(ipAddr, netMask):
     arquivo.write(": ")
     p0 = p1 + "." + p2 + "." + p3 + "." + p4
     json.dump(p0, arquivo)
-    arquivo.write("\n}")
     # Quantidade de hosts na referida rede:
 
     # Faixa de máquinas válidas - que podem ser utilizadas pelos hosts
 
     # Se o IP é em questão é reservado (privado, loopback, etc):
+    arquivo.write("\n}")
