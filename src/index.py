@@ -112,5 +112,3 @@ def execucao(ipAddr, netMask):
     # Faixa de máquinas válidas - que podem ser utilizadas pelos hosts
 
     # Se o IP é em questão é reservado (privado, loopback, etc):
-    # if ((fc.mask_validation(netMask_Blist) == True) & (fc.ip_validation(ipAddr_Blist) == True)):
-    #    print("Ainda não concluído...")
