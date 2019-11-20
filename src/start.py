@@ -6,8 +6,6 @@ def replace(arquivo, posicao):
     return variavel
 
 # funcao que faz a passagem dos enderecos para decimal
-
-
 def decimal(endereco):
     # corto o endereco em 4 partes, com o delimitador sendo o '.'
     endereco_decimal = [int(endereco.split(".")[0]), int(endereco.split(
@@ -16,8 +14,6 @@ def decimal(endereco):
     return endereco_decimal
 
 # funcao que faz a passagem dos enderecos para binario
-
-
 def binario(endereco):
     endereco_binario = [int(endereco.split(".")[0]), int(endereco.split(
         ".")[1]), int(endereco.split(".")[2]), int(endereco.split(".")[3])]
@@ -38,17 +34,69 @@ def binario(endereco):
     if p3 == "":
         p3 = 0
 
-    #print(p0, p1, p2, p3)
+    contador = 0
+    faltante = "0"
+
+    # verifico se falta os 0 a esquerda
+    if (len(str(p0)) < 8):
+        contador = 8 - len(str(p0))
+        for i in range(contador - 1):
+            faltante = faltante + "0"
+        aux = faltante + str(p0)
+        p0 = str(aux)
+    
+    faltante = "0"
+
+    if (len(str(p1)) < 8):
+        contador = 8 - len(str(p1))
+        for i in range(contador - 1):
+            faltante = faltante + "0"
+        aux = faltante + str(p1)
+        p1 = str(aux)
+
+    faltante = "0"
+
+    if (len(str(p2)) < 8):
+        contador = 8 - len(str(p2))
+        for i in range(contador - 1):
+            faltante = faltante + "0"
+        aux = faltante + str(p2)
+        p2 = str(aux)
+
+    faltante = "0"
+
+    if (len(str(p3)) < 8):
+        contador = 8 - len(str(p3))
+        for i in range(contador - 1):
+            faltante = faltante + "0"
+        aux = faltante + str(p3)
+        p3 = str(aux)    
+
     # concateno todos em uma única variável
     endereco_binario = [str(p0), str(p1), str(p2), str(p3)]
 
     return endereco_binario
 
 # funcao recursiva que passa um valor decimal para binario
-
-
 def d2b(n):
     if n == 0:
         return ''
     else:
         return d2b(n//2) + str(n % 2)
+
+def formatar(endereco):
+    aux = []
+    a = ""
+
+    # faco uma copia
+    for i in endereco[0]:
+        aux.append(i)
+    
+    # junto os que estao separados
+    for i in endereco[1:]:
+        a = a + i
+
+    # junto em aux
+    aux.append(a)
+
+    return aux
