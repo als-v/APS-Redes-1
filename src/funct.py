@@ -225,3 +225,68 @@ def ip_redebroadcast(netMask, flag):
                 ip_broadcast.append("1")  
             ip_broadcast = st.formatar(ip_broadcast)
             return ip_broadcast
+
+# funcao que calcula o netId e o hostId
+def netid_hostid(classe, endereco, flag):
+    if (classe == "A"):
+        if (flag == 0):
+            netId = []
+            a = ""
+            for i in endereco[0][1:]:
+                a = a + i
+            netId.append(a)
+            return netId
+        if (flag == 1):
+            hostId = []
+            a = ""
+            for i in range(3):
+                for j in endereco[i + 1]:
+                    a = a + j
+                hostId.append(a)
+                a = ""
+            return hostId
+    elif (classe == "B"):
+        if (flag == 0):
+            netId = []
+            a = ""
+            for i in endereco[0][2:]:
+                a = a + i
+            netId.append(a)
+            a = ""
+            for i in endereco[1]:
+                a = a + i
+            netId.append(a)
+            return netId
+        if (flag == 1):
+            hostId = []
+            a = ""
+            for i in range(2):
+                for j in endereco[i + 2]:
+                    a = a + j
+                hostId.append(a)
+                a = ""
+            return hostId
+    elif (classe == "C"):
+        if (flag == 0):
+            netId = []
+            a = ""
+            for i in endereco[0][3:]:
+                a = a + i
+            netId.append(a)
+            a = ""
+            for i in range(2):
+                for j in endereco[i + 1]:
+                    a = a + j
+                netId.append(a)
+                a = ""
+            return netId
+        if (flag == 1):
+            hostId = []
+            a = ""
+            for i in endereco[3]:
+                a = a + i
+            hostId.append(a)
+            return hostId
+    else:
+        err = "Erro, o endereco ip e invalido!"
+        return err

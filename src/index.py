@@ -10,6 +10,10 @@ from src import start as st
 from src import funct as fc
 import json
 
+# funcao auxiliar
+def replace(endereco, valor):
+    return st.replace(endereco, valor)
+
 # motor do codigo
 def execucao(ipAddr, netMask):
     # ========== __________declaracoes__________ ==========
@@ -67,9 +71,70 @@ def execucao(ipAddr, netMask):
 
 
     # Quantidade de bits da rede (netID) e quantidade de bits de host (hostID), da máscara:
+    # netId
+    classe = fc.classe_ip(ipAddr_Dlist)
+    netId = []
+    netId = fc.netid_hostid(classe, ipAddr_Blist, 0)
+    letraBa = "netId"
+    arquivo.write("    ")
+    json.dump(letraBa, arquivo)
+    arquivo.write(": ")
+    if (classe == "A"):
+        p1 = ""
+        for i in netId:
+            p1 = p1 + i
+        json.dump(p1, arquivo)
+    elif (classe == "B"):
+        p2 = ""
+        for i in netId[0]:
+            p2 = p2 + i
+        p2 = p2 + "."
+        for i in netId[1]:
+            p2 = p2 + i
+        json.dump(p2, arquivo)
+    elif (classe == "C"):
+        p3 = ""
+        for i in netId[0]:
+            p3 = p3 + i
+        for i in range(2):
+            p3 = p3 + "."
+            for j in netId[i + 1]:
+                p3 = p3 + j
+        json.dump(p3, arquivo)
+    arquivo.write(",\n")
+    # hostId
+    hostId = []
+    hostId = fc.netid_hostid(classe, ipAddr_Blist, 1)
+    letraBb = "hostId"
+    arquivo.write("    ")
+    json.dump(letraBb, arquivo)
+    arquivo.write(": ")
+    if (classe == "A"):
+        p1 = ""
+        for i in hostId[0]:
+            p1 = p1 + i
+        for i in range(2):
+            p1 = p1 + "."
+            for j in hostId[i + 1]:
+                p1 = p1 + j
+        json.dump(p1, arquivo)
+    elif (classe == "B"):
+        p2 = ""
+        for i in hostId[0]:
+            p2 = p2 + i
+        p2 = p2 + "."
+        for i in hostId[1]:
+            p2 = p2 + i
+        json.dump(p2, arquivo)
+    elif (classe == "C"):
+        p3 = ""
+        for i in hostId[0]:
+            p3 = p3 + i
+        json.dump(p3, arquivo)
+    arquivo.write(",\n")    
 
     # Classe do IP:
-    classeIp = fc.classe_ip(ipAddr_Dlist)
+    classeIp = classe
     letraC = "ipClass"
     arquivo.write("    ")
     json.dump(letraC, arquivo)
