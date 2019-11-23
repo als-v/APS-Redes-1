@@ -1,3 +1,11 @@
+# =========================================
+# DIRETÓRIO: INDEX.PY
+# Alunos: Alisson e Caio
+# Este programa consiste na elaboracao da 
+# APS 01 da desciplina de REDES 1!!
+# Ultima ateracao: 23/11/2019, by Alisson
+# =========================================
+
 import sys
 from src import index as ix
 

@@ -1,3 +1,10 @@
+# ==========================================
+#  DIRETÓRIO: START.PY
+# Este arquivo consta todas as funcoes 
+# necessarias para o tratamento das variaveis
+# Ultima alteracao: 23/11/2019, by: Alisson
+# ===========================================
+
 def replace(arquivo, posicao):
     variavel = arquivo[posicao][1]  # peega o valor
     variavel = variavel.replace('"', '')  # substitui as aspas por nada

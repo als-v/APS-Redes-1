@@ -1,12 +1,13 @@
+# =========================================
 # DIRETÓRIO: FUNCT.PY
-# ALUNOS: ALISSON E CAIO
-# NESTE ARQUIVO TEMOS OS CODIGOS PARA RESOLUCAO DOS EXERCICIOS
+# Neste arquivo temos as funcoes para os 
+# exercicios da aps em questao
+# Ultima alteracao: 23/11/2019, by: Alisson
+# ==========================================
 
 from src import start as st
 
 # funcao que verifica se a mascara da rede e valida
-
-
 def mask_validation(endereco):
     for i in range(0, (len(endereco) - 1)):
         for j in range(i + 1, (len(endereco) - 1)):
@@ -15,8 +16,6 @@ def mask_validation(endereco):
     return True
 
 # funcao que verifica se o ip da rede e valido
-
-
 def ip_validation(enderecoB):
     # verifico se o endereco comeca em 0
     if (int(enderecoB[0]) == 0):

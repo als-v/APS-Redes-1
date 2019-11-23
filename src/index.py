@@ -1,15 +1,14 @@
+# ===========================================
 # DIRETÓRIO: INDEX.PY
-# ALUNOS: ALISSON E CAIO
-# NESTE ARQUIVO TEMOS A FUNCAO MOTOR DO CODIGO
+# Neste aquivo temos a funcao motor do 
+# codigo, esta que executa o motor do codigo
+# Ultima alteracao: 23/11/2019, by: Alisson
+# ============================================
 
 # importacoes
 from src import start as st
 from src import funct as fc
 import json
-
-# funcao auxiliar
-def replace(endereco, numero):
-    return st.replace(endereco, numero)
 
 # motor do codigo
 def execucao(ipAddr, netMask):
@@ -106,6 +105,7 @@ def execucao(ipAddr, netMask):
     arquivo.write(": ")
     p0 = p1 + "." + p2 + "." + p3 + "." + p4
     json.dump(p0, arquivo)
+
     # Quantidade de hosts na referida rede:
 
     # Faixa de máquinas válidas - que podem ser utilizadas pelos hosts
