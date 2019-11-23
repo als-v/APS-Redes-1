@@ -86,17 +86,23 @@ def d2b(n):
 
 def formatar(endereco):
     aux = []
+    count = 0
     a = ""
 
-    # faco uma copia
-    for i in endereco[0]:
-        aux.append(i)
-    
-    # junto os que estao separados
-    for i in endereco[1:]:
-        a = a + i
-
-    # junto em aux
-    aux.append(a)
+    for i in endereco:              # passo por todo o endereco
+        a = a + i                   # a recebe o valor do endereco 
+        count = count + 1           # contador de posicoes
+        if ((count + 1) == 9):      # caso seja a 1 posicao (8 posicao)
+            aux.append(a)           # junto em aux
+            a = ""                  # a recebe nada
+        elif ((count + 1) == 17):   # caso seja a 2 posicao (16 posicao)
+            aux.append(a)           # junto tudo em aux
+            a = ""                  # a recebe nada
+        elif ((count + 1) == 25):   # caso seja a 3 posicao (24 posicao)
+            aux.append(a)           # junto tudo em aux
+            a = ""                  # a recebe nada
+        elif ((count + 1) == 33):   # caso seja a 4 posicao (32 posicao)
+            aux.append(a)           # junto tudo em aux
+            a = ""                  # a recebe nada
 
     return aux

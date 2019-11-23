@@ -3,8 +3,8 @@
 # NESTE ARQUIVO TEMOS A FUNCAO MOTOR DO CODIGO
 
 # importacoes
-from . import start as st
-from . import funct as fc
+from src import start as st
+from src import funct as fc
 import json
 
 # funcao auxiliar
@@ -80,7 +80,7 @@ def execucao(ipAddr, netMask):
 
     # IP da rede:
     ip_rede = []
-    ip_rede = fc.ip_redebroadcast(ipAddr_Blist, netMask_Blist, 0)
+    ip_rede = fc.ip_redebroadcast(netMask_Blist, 0)
     p1 = ip_rede[0]
     p2 = ip_rede[1]
     p3 = ip_rede[2]
@@ -95,7 +95,7 @@ def execucao(ipAddr, netMask):
 
     # IP de broadcast:
     ip_broadcast = []
-    ip_broadcast = fc.ip_redebroadcast(ipAddr_Blist, netMask_Blist, 1)
+    ip_broadcast = fc.ip_redebroadcast(netMask_Blist, 1)
     p1 = ip_broadcast[0]
     p2 = ip_broadcast[1]
     p3 = ip_broadcast[2]

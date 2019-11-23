@@ -1,7 +1,0 @@
-{
-    "ipValidate": "True",
-    "maskValidate": "True",
-    "ipClass": "A",
-    "networkIP": "00001010.00000000.00000000.01111000",
-    "broadcastIP": "00001010.00000000.00000000.01111111"
-}
