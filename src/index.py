@@ -101,6 +101,8 @@ def execucao(ipAddr, netMask):
             for j in netId[i + 1]:
                 p3 = p3 + j
         json.dump(p3, arquivo)
+    else:
+        json.dump(netId, arquivo)
     arquivo.write(",\n")
     # hostId
     hostId = []
@@ -131,6 +133,8 @@ def execucao(ipAddr, netMask):
         for i in hostId[0]:
             p3 = p3 + i
         json.dump(p3, arquivo)
+    else:
+        json.dump(hostId, arquivo)
     arquivo.write(",\n")    
 
     # Classe do IP:
@@ -143,33 +147,41 @@ def execucao(ipAddr, netMask):
     arquivo.write(",\n")
 
     # IP da rede:
-    ip_rede = []
-    ip_rede = fc.ip_redebroadcast(netMask_Blist, 0)
-    p1 = ip_rede[0]
-    p2 = ip_rede[1]
-    p3 = ip_rede[2]
-    p4 = ip_rede[3]
     letraD = "networkIP"
     arquivo.write("    ")
     json.dump(letraD, arquivo)
     arquivo.write(": ")
-    p0 = p1 + "." + p2 + "." + p3 + "." + p4
-    json.dump(p0, arquivo)     
+    if (mask_valida == True):
+        ip_rede = []
+        ip_rede = fc.ip_redebroadcast(netMask_Blist, 0)
+        p1 = ip_rede[0]
+        p2 = ip_rede[1]
+        p3 = ip_rede[2]
+        p4 = ip_rede[3]
+        p0 = p1 + "." + p2 + "." + p3 + "." + p4
+        json.dump(p0, arquivo)     
+    else:
+        err = "Mascara da rede invalida"
+        json.dump(err, arquivo)
     arquivo.write(",\n")
 
     # IP de broadcast:
-    ip_broadcast = []
-    ip_broadcast = fc.ip_redebroadcast(netMask_Blist, 1)
-    p1 = ip_broadcast[0]
-    p2 = ip_broadcast[1]
-    p3 = ip_broadcast[2]
-    p4 = ip_broadcast[3]
     letraE = "broadcastIP"
     arquivo.write("    ")
     json.dump(letraE, arquivo)
     arquivo.write(": ")
-    p0 = p1 + "." + p2 + "." + p3 + "." + p4
-    json.dump(p0, arquivo)
+    if (mask_valida == True):
+        ip_broadcast = []
+        ip_broadcast = fc.ip_redebroadcast(netMask_Blist, 1)
+        p1 = ip_broadcast[0]
+        p2 = ip_broadcast[1]
+        p3 = ip_broadcast[2]
+        p4 = ip_broadcast[3]
+        p0 = p1 + "." + p2 + "." + p3 + "." + p4
+        json.dump(p0, arquivo)
+    else:
+        err = "Mascara de reded invalida"
+        json.dump(err, arquivo)
 
     # Quantidade de hosts na referida rede:
 
