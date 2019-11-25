@@ -184,7 +184,10 @@ def execucao(ipAddr, netMask):
         json.dump(err, arquivo)
 
     # Quantidade de hosts na referida rede:
-
+    print(ip_rede)
+    print(ip_broadcast)
+    st.quantidadehosts(ip_rede, ip_broadcast)
+    #print(st.d2b(int(ip_rede)))
     # Faixa de máquinas válidas - que podem ser utilizadas pelos hosts
 
     # Se o IP é em questão é reservado (privado, loopback, etc):

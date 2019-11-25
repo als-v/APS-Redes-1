@@ -20,6 +20,42 @@ def decimal(endereco):
 
     return endereco_decimal
 
+def quantidadehosts(ip_rede, ip_broadcast):
+    redeD = decimal2(ip_rede)
+    broadcastD = decimal2(ip_broadcast)
+    print(redeD)
+    print(broadcastD)
+    p1 = (int(broadcastD.split(".")[0]) - int(redeD.split(".")[0])) * (2 ** 24)
+    p2 = (int(broadcastD.split(".")[1]) - int(redeD.split(".")[1])) * (2 ** 16)
+    p3 = (int(broadcastD.split(".")[2]) - int(redeD.split(".")[2])) * (2 ** 8)
+    p4 = (int(broadcastD.split(".")[3]) - int(redeD.split(".")[3])) 
+    p0 = p1 + p2 + p3 + p4
+    print(p0)
+    
+
+# funcao que faz a passagem dos enderecos para decimal em lista
+def decimal2(endereco):
+    p1 = converte(int(endereco[0]))
+    p2 = converte(int(endereco[1]))
+    p3 = converte(int(endereco[2]))
+    p4 = converte(int(endereco[3]))
+
+    a = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4)
+
+    return a
+    
+
+# conversao binario p/ decimal
+def converte(n):
+    decimal = 0
+    n = str(n)
+    n = n[::-1]
+    tam = len(n)
+    for i in range(tam):
+        if n[i] == "1":
+            decimal = decimal + 2**i
+    return decimal
+
 # funcao que faz a passagem dos enderecos para binario
 def binario(endereco):
     endereco_binario = [int(endereco.split(".")[0]), int(endereco.split(

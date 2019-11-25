@@ -1,5 +1,5 @@
 # =========================================
-# DIRETÓRIO: INDEX.PY
+# DIRETORIO: INDEX.PY
 # Alunos: Alisson e Caio
 # Este programa consiste na elaboracao da 
 # APS 01 da desciplina de REDES 1!!
@@ -17,10 +17,10 @@ def main():
     else:
         print("Arquivo aberto com sucesso!!\n")
 
-        # pega o endereço IP do arquivo e salva em ipAddr
+        # pega o endereco IP do arquivo e salva em ipAddr
         ipAddr = ix.replace(arquivo, 1)
 
-        # pega o endereço da Máscara e salva em netMasks
+        # pega o endereco da Mascara e salva em netMasks
         netMask = ix.replace(arquivo, 2)
 
         # motor do codigo
