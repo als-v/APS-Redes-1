@@ -26,6 +26,6 @@ def main():
         # motor do codigo
         ix.execucao(ipAddr, netMask)
 
-
+        
 if __name__ == "__main__":
     main()
