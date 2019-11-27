@@ -290,3 +290,9 @@ def netid_hostid(classe, endereco, flag):
     else:
         err = "Erro, o endereco ip e invalido!"
         return err
+
+    def qtdhosts(count_zero):
+        hosts = 0
+        hosts = ((2 ** count_zero) - 2)
+        return hosts        
+  
