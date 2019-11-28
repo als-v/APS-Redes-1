@@ -19,7 +19,73 @@ def mask_validation(endereco):
 def ip_validation(enderecoB):
     # verifico se o endereco comeca em 0
     if (int(enderecoB[0]) == 0):
+        if ((int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+            err = "Rede corrente"
         return False
+
+    # verifico se o endereco e privado
+    if ((int(enderecoB[0]) == 10) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede privada"
+
+    # verifico se o endereco e publico
+    if ((int(enderecoB[0]) == 14) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede publica"
+
+    # verifico se o endereco e reservado
+    if ((int(enderecoB[0]) == 39) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede reservada"
+
+    # verifico se o endereco e local
+    if ((int(enderecoB[0]) == 127) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede local (localhost)"
+
+    # verifico se o endereco e reservado
+    if ((int(enderecoB[0]) == 128) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede reservada (IANA)"
+
+    # verifico se o endereco e zeroconf
+    if ((int(enderecoB[0]) == 169) and (int(enderecoB[1]) == 254) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Zeroconf"
+
+    # verifico se o endereco e privado
+    if ((int(enderecoB[0]) == 172) and (int(enderecoB[1]) == 16) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede privada"
+
+    # verifico se o endereco e reservada
+    if ((int(enderecoB[0]) == 191) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede reservada (IANA)"
+
+    # verifico se o endereco e de documentacao
+    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 2) and (int(enderecoB[3]) == 0)):
+        return "Documentacao"
+
+    # verifico se o endereco e ipv6 para ipv4
+    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 88) and (int(enderecoB[2]) == 99) and (int(enderecoB[3]) == 0)):
+        return "Rede ipv6 para ipv4"
+
+    # verifico se o endereco e privado
+    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 168) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede privada"
+
+    # verifico se o endereco e para testes de benchmark de redes
+    if ((int(enderecoB[0]) == 198) and (int(enderecoB[1]) == 18) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede para testes de benchmark"
+
+    # verifico se o endereco e reservado
+    if ((int(enderecoB[0]) == 223) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 255) and (int(enderecoB[3]) == 0)):
+        return "Rede privada"
+
+    # verifico se o endereco e multicast
+    if ((int(enderecoB[0]) == 224) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede multicast (rede classe D)"
+
+    # verifico se o endereco e classe E
+    if ((int(enderecoB[0]) == 240) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+        return "Rede reservada (classe E)"
+
+    # verifico se o endereco e broadcast
+    if ((int(enderecoB[0]) == 255) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 255) and (int(enderecoB[3]) == 255)):
+        return "Rede Broadcast"
 
     # verifico se o endereco comeca com 127
     if (int(enderecoB[0]) == 127):
@@ -51,15 +117,15 @@ def classe_ip(endereco):
     A = False
     errA = False
     a = "A"
-    errAA = "O endereço aparenta ser da classe A, porém é inválido!"
+    errAA = "O endereco aparenta ser da classe A, porem e invalido!"
     B = False
     errB = False
     b = "B"
-    errBB = "O endereço aparenta ser da classe B, porém é inválido!"
+    errBB = "O endereco aparenta ser da classe B, porem e invalido!"
     C = False
     errC = False
     c = "C"
-    errCC = "O endereço aparenta ser da classe C, porém é inválido!"
+    errCC = "O endereco aparenta ser da classe C, porem e invalido!"
     err = "Endereco invalido"
 
     if ((endereco[0] <= 126) and (endereco[0] > 0)):
@@ -291,8 +357,15 @@ def netid_hostid(classe, endereco, flag):
         err = "Erro, o endereco ip e invalido!"
         return err
 
-    def qtdhosts(count_zero):
-        hosts = 0
-        hosts = ((2 ** count_zero) - 2)
-        return hosts        
-  
+# calcula a quantidade de hosts na rede
+def quantidadehosts(endereco):
+    count_zero = 0
+
+    for i in endereco:
+        for j in i:
+            if (j == "0"):
+                count_zero = count_zero + 1
+    
+    qtd_hosts = (2 ** count_zero) - 2
+
+    return qtd_hosts

@@ -53,7 +53,7 @@ def execucao(ipAddr, netMask):
     arquivo.write(": ")
     if (ip_valido == True):
         json.dump(a, arquivo)
-    elif (ip_valido == False):
+    else:
         json.dump(b, arquivo)
     arquivo.write(",\n")
 
@@ -179,18 +179,36 @@ def execucao(ipAddr, netMask):
         p4 = ip_broadcast[3]
         p0 = p1 + "." + p2 + "." + p3 + "." + p4
         json.dump(p0, arquivo)
+        arquivo.write(",\n")
     else:
         err = "Mascara de reded invalida"
         json.dump(err, arquivo)
+        arquivo.write(",\n")
 
     # Quantidade de hosts na referida rede:
-    print(ip_rede)
-    print(ip_broadcast)
+    letraF = "qtdHost"
+    arquivo.write("    ")
+    json.dump(letraF, arquivo)
+    arquivo.write(": ")    
+    if (mask_valida == True):
+        quantidade = fc.quantidadehosts(ip_rede)
+        json.dump(quantidade, arquivo)
+    else:
+        err = "Erro, a mascara e invalida"
+        json.dump(err, arquivo)
+    arquivo.write(",\n")
 
-    #st.qtdhosts(count_zero)
-
-    #print(st.d2b(int(ip_rede)))
     # Faixa de máquinas válidas - que podem ser utilizadas pelos hosts
 
-    # Se o IP é em questão é reservado (privado, loopback, etc):
+    # Se o IP é em questão é reservado (privado, loopback, etc)
+    letraH = "ipStatus"
+    arquivo.write("    ")
+    json.dump(letraH, arquivo)
+    arquivo.write(": ")
+    if ((ip_valido != False) and (ip_valido != True)):
+        json.dump(ip_valido, arquivo)
+    else:
+        err = "O ip e enderecavel"
+        json.dump(err, arquivo)
+    #arquivo.write(",\n")
     arquivo.write("\n}")
