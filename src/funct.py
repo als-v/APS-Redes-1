@@ -7,20 +7,77 @@
 
 from src import start as st
 
-# funcao que verifica se a mascara da rede e valida
-def mask_validation(endereco):
-    for i in range(0, (len(endereco) - 1)):
-        for j in range(i + 1, (len(endereco) - 1)):
-            if(endereco[j] > endereco[i]):
-                return False
+# funcao que testa o ip e a mascara
+def teste(ip, mask):
+    count_ponto = 0
+    flag = True
+
+    for i in ip:
+        if (i == "."):
+            count_ponto = count_ponto + 1
+    
+    if ((count_ponto < 3) or (count_ponto > 3)):
+        return False
+    
+    count_ponto = 0
+
+    for i in mask:
+        if (i == "."):
+            count_ponto = count_ponto + 1
+    
+    if ((count_ponto < 3) or (count_ponto > 3)):
+        return False
+    
+    for i in ip:
+        if (i != "0" and i != "1" and i != "2" and i != "3" and i != "4" and i != "5" and i != "6" and i != "7" and i != "8" and i != "9" and i != "."):
+            flag = False
+
+    for i in mask:
+        if (i != "0" and i != "1" and i != "2" and i != "3" and i != "4" and i != "5" and i != "6" and i != "7" and i != "8" and i != "9" and i != "."):
+            flag = False
+
+    if (flag == False):
+        return False
+
+    for i in range(4):
+        p0 = ip.split(".")[i]
+        if ((int(p0) < 0) or (int(p0) > 255)):
+            flag = False
+    
+    for i in range(4):
+        p0 = mask.split(".")[i]
+        if ((int(p0) < 0) or (int(p0) > 255)):
+            flag = False
+    
+    if (flag == False):
+        return False
+
     return True
+
+# funcao que verifica se a mascara da rede e valida
+def mask_validation(endereco, classe):
+    #for i in range(0, (len(endereco) - 1)):
+    #    for j in range(i + 1, (len(endereco) - 1)):
+    #        if(endereco[j] > endereco[i]):
+    #            return False
+    if (classe == "A"):
+        if (endereco[0] == 255):
+            return True
+    elif (classe == "B"):
+        if ((endereco[0] == 255) and (endereco[1] == 255)):
+            return True
+    elif (classe == "C"):
+        if ((endereco[0] == 255) and (endereco[1] == 255) and (endereco[2] == 255)):
+            return True
+
+    return False
 
 # funcao que verifica se o ip da rede e valido
 def ip_validation(enderecoB):
     # verifico se o endereco comeca em 0
     if (int(enderecoB[0]) == 0):
         if ((int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
-            err = "Rede corrente"
+            return "Rede corrente"
         return False
 
     # verifico se o endereco e privado
@@ -130,7 +187,7 @@ def classe_ip(endereco):
 
     if ((endereco[0] <= 126) and (endereco[0] > 0)):
         A = True
-        if(((endereco[1] == 0) and (endereco[2] == 0) and (endereco[3] == 0)) or ((endereco[1] == 255) and (endereco[2] == 255) and (endereco[3] == 355))):
+        if(((endereco[1] == 0) and (endereco[2] == 0) and (endereco[3] == 0)) or ((endereco[1] == 255) and (endereco[2] == 255) and (endereco[3] == 255))):
             errA = True
 
     if ((endereco[0] <= 191) and (endereco[0] > 127)):
@@ -294,68 +351,24 @@ def ip_redebroadcast(netMask, flag):
 
 # funcao que calcula o netId e o hostId
 def netid_hostid(classe, endereco, flag):
-    if (classe == "A"):
-        if (flag == 0):
-            netId = []
-            a = ""
-            for i in endereco[0][1:]:
-                a = a + i
-            netId.append(a)
-            return netId
-        if (flag == 1):
-            hostId = []
-            a = ""
-            for i in range(3):
-                for j in endereco[i + 1]:
-                    a = a + j
-                hostId.append(a)
-                a = ""
-            return hostId
-    elif (classe == "B"):
-        if (flag == 0):
-            netId = []
-            a = ""
-            for i in endereco[0][2:]:
-                a = a + i
-            netId.append(a)
-            a = ""
-            for i in endereco[1]:
-                a = a + i
-            netId.append(a)
-            return netId
-        if (flag == 1):
-            hostId = []
-            a = ""
-            for i in range(2):
-                for j in endereco[i + 2]:
-                    a = a + j
-                hostId.append(a)
-                a = ""
-            return hostId
-    elif (classe == "C"):
-        if (flag == 0):
-            netId = []
-            a = ""
-            for i in endereco[0][3:]:
-                a = a + i
-            netId.append(a)
-            a = ""
-            for i in range(2):
-                for j in endereco[i + 1]:
-                    a = a + j
-                netId.append(a)
-                a = ""
-            return netId
-        if (flag == 1):
-            hostId = []
-            a = ""
-            for i in endereco[3]:
-                a = a + i
-            hostId.append(a)
-            return hostId
-    else:
-        err = "Erro, o endereco ip e invalido!"
+    err = "Erro, o endereco ip ou e invalido ou e reservado!!"
+    if (classe != "A" and classe != "B" and classe != "C"):
         return err
+
+    count_um = 0
+    count_zero = 0
+    for i in endereco:
+        for j in i:
+            if (j == "1"):
+                count_um = count_um + 1
+            elif (j == "0"):
+                count_zero = count_zero + 1
+
+    if (flag == 0):
+        return count_um
+    elif (flag == 1):
+        return count_zero
+
 
 # calcula a quantidade de hosts na rede
 def quantidadehosts(endereco):
@@ -366,6 +379,9 @@ def quantidadehosts(endereco):
             if (j == "0"):
                 count_zero = count_zero + 1
     
-    qtd_hosts = (2 ** count_zero) - 2
+    qtd_hosts = (2 ** count_zero)
+
+    if (qtd_hosts == 1):
+        return 0
 
     return qtd_hosts

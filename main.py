@@ -3,7 +3,7 @@
 # Alunos: Alisson e Caio
 # Este programa consiste na elaboracao da 
 # APS 01 da desciplina de REDES 1!!
-# Ultima ateracao: 23/11/2019, by Alisson
+# Ultima ateracao: 20/11/2019, by Alisson
 # =========================================
 
 import sys
@@ -15,8 +15,6 @@ def main():
     if arquivo == None:
         print("Erro ao abrir o arquivo!!\n")
     else:
-        print("Arquivo aberto com sucesso!!\n")
-
         # pega o endereco IP do arquivo e salva em ipAddr
         ipAddr = ix.replace(arquivo, 1)
 
