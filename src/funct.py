@@ -216,7 +216,7 @@ def classe_ip(endereco):
         return err
 
 # calcula o ip da rede e de broadcast
-def ip_redebroadcast(netMask, flag):
+def ip_redebroadcast(netMask, ipAddr, flag):
     count_pos = 0
     count_zero = 0
     count_um = 0
@@ -234,7 +234,7 @@ def ip_redebroadcast(netMask, flag):
         if (flag == 0):                         # caso eu queira o ip da rede
             ip_rede = []
             for i in range(count_um):           # faco uma copia ate essa posicao
-                ip_rede.append(netMask[0][i])
+                ip_rede.append(ipAddr[0][i])
             for j in range(8 - count_um):       # seto tudo depois dela em 0
                 ip_rede.append("0")
             for i in range(3):                  # como ainda tem 3 partes do endereco, seto em 0 para as demais partes
@@ -245,7 +245,7 @@ def ip_redebroadcast(netMask, flag):
         elif (flag == 1):                       # caso eu queira o ip broadcast, sigo a mesma logica acima
             ip_broadcast = []
             for i in range(count_um):
-                ip_broadcast.append(netMask[0][i])
+                ip_broadcast.append(ipAddr[0][i])
             for j in range(8 - count_um):
                 ip_broadcast.append("1")
             for i in range(3):
@@ -257,10 +257,10 @@ def ip_redebroadcast(netMask, flag):
         if (flag == 0):                             # caso eu queira o ip da rede
             ip_rede = []
             for i in range(8):                      # faco uma copia da primeira parte
-                ip_rede.append(netMask[0][i])
+                ip_rede.append(ipAddr[0][i])
             sobra = count_um - 8                    # tenho a sobra, que recebe a posicao que o ultimo um esta nessa segunda parte do endereco
             for i in range(sobra):                  # copio tudo ate chegar nele
-                ip_rede.append(netMask[1][i])
+                ip_rede.append(ipAddr[1][i])
             sobra = 8 - sobra                       # logo apos, sobra recebe a quantidade que falta para terminar a segunda parte do endereco
             for i in range(sobra):                  # logo, seto tudo em 0
                 ip_rede.append("0")
@@ -272,10 +272,10 @@ def ip_redebroadcast(netMask, flag):
         elif (flag == 1):                           # caso queira o ip broadcast, sigo a mesma logica acima
             ip_broadcast = []
             for i in range(8):                     
-                ip_broadcast.append(netMask[0][i])
+                ip_broadcast.append(ipAddr[0][i])
             sobra = count_um - 8                   
             for i in range(sobra):                 
-                ip_broadcast.append(netMask[1][i])
+                ip_broadcast.append(ipAddr[1][i])
             sobra = 8 - sobra                       
             for i in range(sobra):                  
                 ip_broadcast.append("1")
@@ -288,12 +288,12 @@ def ip_redebroadcast(netMask, flag):
         if (flag == 0):                             # caso queira ip da rede
             ip_rede = []
             for i in range(8):                      # faco uma copia da primeira parte
-                ip_rede.append(netMask[0][i])
+                ip_rede.append(ipAddr[0][i])
             for i in range(8):                      # faco uma copia da segunda parte
-                ip_rede.append(netMask[1][i])
+                ip_rede.append(ipAddr[1][i])
             sobra = count_um - 16                   # sobra recebe a posicao do ultimo 1
             for i in range(sobra):                  # copio tudo ate o ultimo 1
-                ip_rede.append(netMask[2][i])
+                ip_rede.append(ipAddr[2][i])
             sobra = 8 - sobra                       # sobra recebe a quantidade de elementos que precisa para terminar o endereco
             for i in range(sobra):                  # seto tudo apos isso em 0
                 ip_rede.append("0")
@@ -304,12 +304,12 @@ def ip_redebroadcast(netMask, flag):
         elif (flag == 1):                           # caso eu queira o ip broadcast, sigo a mesma logica acima
             ip_broadcast = []
             for i in range(8):
-                ip_broadcast.append(netMask[0][i])
+                ip_broadcast.append(ipAddr[0][i])
             for i in range(8):
-                ip_broadcast.append(netMask[1][i])
+                ip_broadcast.append(ipAddr[1][i])
             sobra = count_um - 16
             for i in range(sobra):
-                ip_broadcast.append(netMask[2][i])
+                ip_broadcast.append(ipAddr[2][i])
             sobra = 8 - sobra
             for i in range(sobra):
                 ip_broadcast.append("1")
@@ -321,14 +321,14 @@ def ip_redebroadcast(netMask, flag):
         if (flag == 0):                                 # caso eu queira o ip da rede
             ip_rede = []
             for i in range(8):                          # faco uma copia da primeira parte do endereco
-                ip_rede.append(netMask[0][i])
+                ip_rede.append(ipAddr[0][i])
             for i in range(8):                          # faco uma copia da segunda parte do endereco   
-                ip_rede.append(netMask[1][i])           
+                ip_rede.append(ipAddr[1][i])           
             for i in range(8):                          # faco uma copia da terceira parte do endereco
-                ip_rede.append(netMask[2][i])
+                ip_rede.append(ipAddr[2][i])
             sobra = 32 - count_um                       # variavel sobra recebe o valor que falta para chegar no 1
             for i in range(8 - sobra):                  # copio tudo ate ele
-                ip_rede.append(netMask[3][i])
+                ip_rede.append(ipAddr[3][i])
             for i in range(sobra):                      # logo apos, seto tudo que vem depois do ultimo 1 em 0
                 ip_rede.append("0")
             ip_rede = st.formatar(ip_rede)              # formato o endereco
@@ -336,14 +336,14 @@ def ip_redebroadcast(netMask, flag):
         elif (flag == 1):                               # caso eu queira o ip broadcast, sigo a mesma logica acima
             ip_broadcast = []
             for i in range(8):
-                ip_broadcast.append(netMask[0][i])
+                ip_broadcast.append(ipAddr[0][i])
             for i in range(8):
-                ip_broadcast.append(netMask[1][i])
+                ip_broadcast.append(ipAddr[1][i])
             for i in range(8):
-                ip_broadcast.append(netMask[2][i])
+                ip_broadcast.append(ipAddr[2][i])
             sobra = 32 - count_um
             for i in range(8 - sobra):
-                ip_broadcast.append(netMask[3][i])
+                ip_broadcast.append(ipAddr[3][i])
             for i in range(sobra):
                 ip_broadcast.append("1")  
             ip_broadcast = st.formatar(ip_broadcast)

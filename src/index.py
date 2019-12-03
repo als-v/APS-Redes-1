@@ -149,7 +149,7 @@ def execucaoAux(ipAddr, netMask):
     arquivo.write(": ")
     if (mask_valida == True):
         ip_rede = []
-        ip_rede = fc.ip_redebroadcast(netMask_Blist, 0)
+        ip_rede = fc.ip_redebroadcast(netMask_Blist, ipAddr_Blist, 0)
         p1 = ip_rede[0]
         p2 = ip_rede[1]
         p3 = ip_rede[2]
@@ -172,7 +172,7 @@ def execucaoAux(ipAddr, netMask):
     arquivo.write(": ")
     if (mask_valida == True):
         ip_broadcast = []
-        ip_broadcast = fc.ip_redebroadcast(netMask_Blist, 1)
+        ip_broadcast = fc.ip_redebroadcast(netMask_Blist, ipAddr_Blist, 1)
         p1 = ip_broadcast[0]
         p2 = ip_broadcast[1]
         p3 = ip_broadcast[2]
@@ -195,7 +195,7 @@ def execucaoAux(ipAddr, netMask):
     json.dump(letraF, arquivo)
     arquivo.write(": ")    
     if (mask_valida == True):
-        quantidade = fc.quantidadehosts(ip_rede)
+        quantidade = fc.quantidadehosts(netMask_Blist)
         json.dump(quantidade, arquivo)
         print("Quantidade de hosts referida na rede: ", quantidade)
         print("\n")
@@ -212,7 +212,7 @@ def execucaoAux(ipAddr, netMask):
     json.dump(letraG, arquivo)
     arquivo.write(": ")    
     if (mask_valida == True):
-        quantidade = fc.quantidadehosts(ip_rede) - 2
+        quantidade = fc.quantidadehosts(netMask_Blist) - 2
         if (quantidade < 0):
             json.dump(0, arquivo)
             print("Faixa de maquinas validas que podem ser utilizadas pelos hosts:  0")
