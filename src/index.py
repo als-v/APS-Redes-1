@@ -40,25 +40,21 @@ def execucaoAux(ipAddr, netMask):
     ipAddr_Dlist = []
     ipAddr_Dlist = st.decimal(ipAddr)
     print("IP decimal: ", ipAddr_Dlist)
-    print("\n")
+     
+    # lista do ipAddr binario
+    ipAddr_Blist = []
+    ipAddr_Blist = st.binario(ipAddr)
+    print("IP binario: ", ipAddr_Blist)
 
     # lista do netMask decimal
     netMask_Dlist = []
     netMask_Dlist = st.decimal(netMask)
     print("Mascara decimal: ", netMask_Dlist)
-    print("\n")
-
-    # lista do ipAddr binario
-    ipAddr_Blist = []
-    ipAddr_Blist = st.binario(ipAddr)
-    print("IP binario: ", ipAddr_Blist)
-    print("\n")
-
+     
     # lista do netMask binario
     netMask_Blist = []
     netMask_Blist = st.binario(netMask)
     print("Mascara binario: ",netMask_Blist)
-    print("\n")
 
     # ========== __________execucao__________ ==========
     # Verificar se IPs e máscaras são válidas:
@@ -66,34 +62,34 @@ def execucaoAux(ipAddr, netMask):
     b = False
     # ip valido
     ip_valido = fc.ip_validation(ipAddr_Dlist)
-    letraAa = "ipValidate"
+    letraAa = "ip_valido"
     arquivo.write("    ")
     json.dump(letraAa, arquivo)
     arquivo.write(": ")
     if (ip_valido == True):
         json.dump(a, arquivo)
         print("Ip valido: ", a)
-        print("\n")
+         
     else:
         json.dump(b, arquivo)
         print("Ip valido: ", b)
-        print("\n")
+         
     arquivo.write(",\n")
 
     # mascara valida
     mask_valida = fc.mask_validation(netMask_Dlist, fc.classe_ip(ipAddr_Dlist), netMask_Blist)
-    letraAb = "maskValidate"
+    letraAb = "mascara_valida"
     arquivo.write("    ")
     json.dump(letraAb, arquivo)
     arquivo.write(": ")
     if (mask_valida == True):
         json.dump(a, arquivo)
         print("Mascara valida: ", a)
-        print("\n")
+         
     elif (mask_valida == False):
         json.dump(b, arquivo)
         print("Mascara valida: ", b)
-        print("\n")
+         
     arquivo.write(",\n")
 
 
@@ -101,49 +97,49 @@ def execucaoAux(ipAddr, netMask):
     # netId
     classe = fc.classe_ip(ipAddr_Dlist)
     netId = fc.netid_hostid(classe, netMask_Blist, 0)
-    letraBa = "netId"
+    letraBa = "net_id"
     arquivo.write("    ")
     json.dump(letraBa, arquivo)
     arquivo.write(": ")
     if (mask_valida == True):
         json.dump(netId, arquivo)
         print("Net ID: ", netId)
-        print("\n")
+         
     else:
         json.dump("Erro, mascara invalida", arquivo)
         print("Net ID:  Erro, mascara invalida")
-        print("\n")
+         
     arquivo.write(",\n")
 
     # hostId
     hostId = fc.netid_hostid(classe, netMask_Blist, 1)
-    letraBb = "hostId"
+    letraBb = "host_id"
     arquivo.write("    ")
     json.dump(letraBb, arquivo)
     arquivo.write(": ")
     if (mask_valida == True):
         json.dump(hostId, arquivo)
         print("Host ID: ", hostId)
-        print("\n")
+         
     else:
         json.dump("Erro, mascara invalida", arquivo)
         print("Host ID:  Erro, mascara invalida")
-        print("\n")
+         
     arquivo.write(",\n")    
 
     # Classe do IP:
     classeIp = classe
-    letraC = "ipClass"
+    letraC = "classe_ip"
     arquivo.write("    ")
     json.dump(letraC, arquivo)
     arquivo.write(": ")
     json.dump(classeIp, arquivo)
     print("Classe IP: ", classeIp)
-    print("\n")
+     
     arquivo.write(",\n")
 
     # IP da rede:
-    letraD = "networkIP"
+    letraD = "ip_da_rede"
     arquivo.write("    ")
     json.dump(letraD, arquivo)
     arquivo.write(": ")
@@ -155,18 +151,20 @@ def execucaoAux(ipAddr, netMask):
         p3 = ip_rede[2]
         p4 = ip_rede[3]
         p0 = p1 + "." + p2 + "." + p3 + "." + p4
+        print("IP da rede binario: ", p0)
+        ip_rede2 = st.ultimo(p0, 0)
+        p0 = st.ultimo(p0, 3)
         json.dump(p0, arquivo)
-        print("IP da rede: ", p0)     
-        print("\n")
+        print("IP da rede decimal: ", p0)
     else:
         err = "Mascara da rede invalida"
         json.dump(err, arquivo)
         print("IP da rede: ", err)
-        print("\n")
+         
     arquivo.write(",\n")
 
     # IP de broadcast:
-    letraE = "broadcastIP"
+    letraE = "ip_broadcast"
     arquivo.write("    ")
     json.dump(letraE, arquivo)
     arquivo.write(": ")
@@ -178,19 +176,21 @@ def execucaoAux(ipAddr, netMask):
         p3 = ip_broadcast[2]
         p4 = ip_broadcast[3]
         p0 = p1 + "." + p2 + "." + p3 + "." + p4
+        print("IP de broadcast binario: ", p0)
+        ip_broadcast2 = st.ultimo(p0, 1)
+        p0 = st.ultimo(p0, 3)
         json.dump(p0, arquivo)
-        print("IP de broadcast: ", p0)
-        print("\n")
-        arquivo.write(",\n")
+        print("Ip de broadcast decimal: ", p0)
+         
     else:
         err = "Mascara de rede invalida"
         json.dump(err, arquivo)
         print("IP de boradcast: ", err)
-        print("\n")
-        arquivo.write(",\n")
+         
+    arquivo.write(",\n")
 
     # Quantidade de hosts na referida rede:
-    letraF = "qtdHosts"
+    letraF = "quantidade_de_hosts"
     arquivo.write("    ")
     json.dump(letraF, arquivo)
     arquivo.write(": ")    
@@ -198,33 +198,35 @@ def execucaoAux(ipAddr, netMask):
         quantidade = fc.quantidadehosts(netMask_Blist)
         json.dump(quantidade, arquivo)
         print("Quantidade de hosts referida na rede: ", quantidade)
-        print("\n")
+         
     else:
         err = "Erro, a mascara e invalida"
         json.dump(err, arquivo)
         print("Quantidade de hosts referida na rede: ", err)
-        print("\n")
+         
     arquivo.write(",\n")
 
     # Faixa de máquinas válidas - que podem ser utilizadas pelos hosts
-    letraG = "qtdValidHosts"
+    letraG = "ip_valido_inicial"
+    letraGa = "ip_valido_final"
     arquivo.write("    ")
     json.dump(letraG, arquivo)
     arquivo.write(": ")    
     if (mask_valida == True):
-        quantidade = fc.quantidadehosts(netMask_Blist) - 2
-        if (quantidade < 0):
-            json.dump(0, arquivo)
-            print("Faixa de maquinas validas que podem ser utilizadas pelos hosts:  0")
-        else:
-            json.dump(quantidade, arquivo)
-            print("Faixa de maquinas validas que podem ser utilizadas pelos hosts: ", quantidade)
-        print("\n")
+        json.dump(ip_rede2, arquivo)
+        arquivo.write(",\n")
+        arquivo.write("    ")
+        json.dump(letraGa, arquivo)
+        arquivo.write(": ")
+        json.dump(ip_broadcast2, arquivo)    
+        quantidade = ip_rede2 + " - " + ip_broadcast2
+        print("Faixa de maquinas validas que podem ser utilizadas pelos hosts: ", quantidade)
+         
     else:
         err = "Erro, a mascara e invalida"
         json.dump(err, arquivo)
         print("Faixa de maquinas validas que podem ser utilizadas pelos hosts: ", err)
-        print("\n")
+         
     arquivo.write(",\n")
 
     # Se o IP é em questão é reservado (privado, loopback, etc)
@@ -235,11 +237,11 @@ def execucaoAux(ipAddr, netMask):
     if ((ip_valido != False) and (ip_valido != True)):
         json.dump(ip_valido, arquivo)
         print("Status do IP: ", ip_valido)
-        print("\n")
+         
     else:
         err = "O ip e enderecavel"
         json.dump(err, arquivo)
         print("Status do IP: ", err)
-        print("\n")
+         
 
     arquivo.write("\n}")
