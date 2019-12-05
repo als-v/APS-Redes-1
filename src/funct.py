@@ -55,21 +55,52 @@ def teste(ip, mask):
     return True
 
 # funcao que verifica se a mascara da rede e valida
-def mask_validation(endereco, classe):
-    #for i in range(0, (len(endereco) - 1)):
-    #    for j in range(i + 1, (len(endereco) - 1)):
-    #        if(endereco[j] > endereco[i]):
-    #            return False
+def mask_validation(endereco, classe, endereco2):
+    comecou_um = False
+    comecou_zero = False
+    nao_pode_ter_um = False
     if (classe == "A"):
         if (endereco[0] == 255):
+            for i in endereco2[1:]:
+                for j in i:
+                    if ((j == "1") and (comecou_zero == False) and (comecou_um == False)):
+                        comecou_um = True
+                    elif ((j == "0") and (comecou_zero == False) and (comecou_um == False)):
+                        nao_pode_ter_um = True
+                        comecou_zero = True
+                    elif ((j == "1") and (nao_pode_ter_um == True)):
+                        return False
+                    elif ((j == "0") and (comecou_um == True)):
+                        nao_pode_ter_um = True
             return True
     elif (classe == "B"):
         if ((endereco[0] == 255) and (endereco[1] == 255)):
+            for i in endereco2[2:]:
+                for j in i:
+                    if ((j == "1") and (comecou_zero == False) and (comecou_um == False)):
+                        comecou_um = True
+                    elif ((j == "0") and (comecou_zero == False) and (comecou_um == False)):
+                        nao_pode_ter_um = True
+                        comecou_zero = True
+                    elif ((j == "1") and (nao_pode_ter_um == True)):
+                        return False
+                    elif ((j == "0") and (comecou_um == True)):
+                        nao_pode_ter_um = True
             return True
     elif (classe == "C"):
         if ((endereco[0] == 255) and (endereco[1] == 255) and (endereco[2] == 255)):
+            for i in endereco2[3:]:
+                for j in i:
+                    if ((j == "1") and (comecou_zero == False) and (comecou_um == False)):
+                        comecou_um = True
+                    elif ((j == "0") and (comecou_zero == False) and (comecou_um == False)):
+                        nao_pode_ter_um = True
+                        comecou_zero = True
+                    elif ((j == "1") and (nao_pode_ter_um == True)):
+                        return False
+                    elif ((j == "0") and (comecou_um == True)):
+                        nao_pode_ter_um = True
             return True
-
     return False
 
 # funcao que verifica se o ip da rede e valido

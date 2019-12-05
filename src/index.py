@@ -81,7 +81,7 @@ def execucaoAux(ipAddr, netMask):
     arquivo.write(",\n")
 
     # mascara valida
-    mask_valida = fc.mask_validation(netMask_Dlist, fc.classe_ip(ipAddr_Dlist))
+    mask_valida = fc.mask_validation(netMask_Dlist, fc.classe_ip(ipAddr_Dlist), netMask_Blist)
     letraAb = "maskValidate"
     arquivo.write("    ")
     json.dump(letraAb, arquivo)
