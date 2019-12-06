@@ -261,19 +261,19 @@ def ip_redebroadcast(netMask, ipAddr, flag):
             elif (j == "0"):
                 count_zero = count_zero + 1
 
-    if (count_um >= 0 and count_um < 9):        # caso esteja no na primeira parte do endereco
-        if (flag == 0):                         # caso eu queira o ip da rede
+    if (count_um >= 0 and count_um < 9):                # caso esteja no na primeira parte do endereco
+        if (flag == 0):                                 # caso eu queira o ip da rede
             ip_rede = []
-            for i in range(count_um):           # faco uma copia ate essa posicao
+            for i in range(count_um):                   # faco uma copia ate essa posicao
                 ip_rede.append(ipAddr[0][i])
-            for j in range(8 - count_um):       # seto tudo depois dela em 0
+            for j in range(8 - count_um):               # seto tudo depois dela em 0
                 ip_rede.append("0")
-            for i in range(3):                  # como ainda tem 3 partes do endereco, seto em 0 para as demais partes
+            for i in range(3):                          # como ainda tem 3 partes do endereco, seto em 0 para as demais partes
                 for j in range(8):
                     ip_rede.append("0")
-            ip_rede = st.formatar(ip_rede)      # formato o endereco
-            return ip_rede                      # retorno o ip da rede
-        elif (flag == 1):                       # caso eu queira o ip broadcast, sigo a mesma logica acima
+            ip_rede = st.formatar(ip_rede)              # formato o endereco
+            return ip_rede                              # retorno o ip da rede
+        elif (flag == 1):                               # caso eu queira o ip broadcast, sigo a mesma logica acima
             ip_broadcast = []
             for i in range(count_um):
                 ip_broadcast.append(ipAddr[0][i])
@@ -416,3 +416,24 @@ def quantidadehosts(endereco):
         return 0
 
     return qtd_hosts
+
+# calcula a faixa de enderecos validos
+def faixa(endereco, flag):
+    p1 = int(endereco.split(".")[0])
+    p2 = int(endereco.split(".")[1])
+    p3 = int(endereco.split(".")[2])
+    p4 = int(endereco.split(".")[3])
+
+    p1 = st.converte(p1)
+    p2 = st.converte(p2)
+    p3 = st.converte(p3)
+    p4 = st.converte(p4)
+
+    if (flag == 0):
+        p5 = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4 + 1)
+        return p5
+    elif (flag == 1):
+        p5 = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4 - 1)
+        return p5
+    p5 = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4)
+    return p5    

@@ -157,8 +157,8 @@ def execucaoAux(ipAddr, netMask):
         p4 = ip_rede[3]
         p0 = p1 + "." + p2 + "." + p3 + "." + p4
         print("IP da rede binario: ", p0)
-        ip_rede2 = st.ultimo(p0, 0)
-        p0 = st.ultimo(p0, 3)
+        ip_rede2 = fc.faixa(p0, 0)
+        p0 = fc.faixa(p0, 3)
         json.dump(p0, arquivo)
         print("IP da rede decimal: ", p0)
     else:
@@ -182,8 +182,8 @@ def execucaoAux(ipAddr, netMask):
         p4 = ip_broadcast[3]
         p0 = p1 + "." + p2 + "." + p3 + "." + p4
         print("IP de broadcast binario: ", p0)
-        ip_broadcast2 = st.ultimo(p0, 1)
-        p0 = st.ultimo(p0, 3)
+        ip_broadcast2 = fc.faixa(p0, 1)
+        p0 = fc.faixa(p0, 3)
         json.dump(p0, arquivo)
         print("Ip de broadcast decimal: ", p0)
 

@@ -136,23 +136,3 @@ def formatar(endereco):
             a = ""                  # a recebe nada
 
     return aux
-
-def ultimo(endereco, flag):
-    p1 = int(endereco.split(".")[0])
-    p2 = int(endereco.split(".")[1])
-    p3 = int(endereco.split(".")[2])
-    p4 = int(endereco.split(".")[3])
-
-    p1 = converte(p1)
-    p2 = converte(p2)
-    p3 = converte(p3)
-    p4 = converte(p4)
-
-    if (flag == 0):
-        p5 = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4 + 1)
-        return p5
-    elif (flag == 1):
-        p5 = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4 - 1)
-        return p5
-    p5 = str(p1) + "." + str(p2) + "." + str(p3) + "." + str(p4)
-    return p5
