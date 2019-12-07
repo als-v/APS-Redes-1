@@ -2,7 +2,7 @@
 # DIRETÓRIO: INDEX.PY
 # Neste aquivo temos a funcao motor do
 # codigo, esta que executa o motor do codigo
-# Ultima alteracao: 01/12/2019, by: Alisson
+# Ultima alteracao: 01/12/2019
 # ============================================
 
 # importacoes

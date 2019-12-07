@@ -2,7 +2,7 @@
 # DIRETÓRIO: FUNCT.PY
 # Neste arquivo temos as funcoes para os 
 # exercicios da aps em questao
-# Ultima alteracao: 23/11/2019, by: Alisson
+# Ultima alteracao: 06/12/2019
 # ==========================================
 
 from src import start as st

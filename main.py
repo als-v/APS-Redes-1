@@ -3,7 +3,7 @@
 # Alunos: Alisson e Caio
 # Este programa consiste na elaboracao da 
 # APS 01 da desciplina de REDES 1!!
-# Ultima ateracao: 20/11/2019, by Alisson
+# Ultima ateracao: 20/11/2019
 # =========================================
 
 import sys

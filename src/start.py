@@ -2,7 +2,7 @@
 #  DIRETÓRIO: START.PY
 # Este arquivo consta todas as funcoes 
 # necessarias para o tratamento das variaveis
-# Ultima alteracao: 20/11/2019, by: Alisson
+# Ultima alteracao: 20/11/2019
 # ===========================================
 
 def replace(arquivo, posicao):
