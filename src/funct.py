@@ -107,9 +107,8 @@ def mask_validation(endereco, classe, endereco2):
 def ip_validation(enderecoB):
     # verifico se o endereco comeca em 0
     if (int(enderecoB[0]) == 0):
-        if ((int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
             return "Rede corrente"
-        return False
+
 
     # verifico se o endereco e privado
     if ((int(enderecoB[0]) == 10) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
