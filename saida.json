@@ -1,0 +1,12 @@
+{
+    "ip_valido": false,
+    "mascara_valida": false,
+    "net_id": "Erro, mascara invalida",
+    "host_id": "Erro, mascara invalida",
+    "classe_ip": "Endereco invalido",
+    "ip_da_rede": "Mascara da rede invalida",
+    "ip_broadcast": "Mascara de rede invalida",
+    "quantidade_de_hosts": "Erro, a mascara e invalida",
+    "ip_valido_inicial": "Erro, a mascara e invalida",
+    "ipStatus": "O ip e enderecavel"
+}

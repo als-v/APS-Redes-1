@@ -109,76 +109,71 @@ def ip_validation(enderecoB):
     if (int(enderecoB[0]) == 0):
             return "Rede corrente"
 
-
     # verifico se o endereco e privado
-    if ((int(enderecoB[0]) == 10) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 10)):
         return "Rede privada"
 
     # verifico se o endereco e publico
-    if ((int(enderecoB[0]) == 14) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 14)):
         return "Rede publica"
 
     # verifico se o endereco e reservado
-    if ((int(enderecoB[0]) == 39) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 39)):
         return "Rede reservada"
 
     # verifico se o endereco e local
-    if ((int(enderecoB[0]) == 127) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 127)):
         return "Rede local (localhost)"
 
     # verifico se o endereco e reservado
-    if ((int(enderecoB[0]) == 128) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 128) and (int(enderecoB[1]) == 0)):
         return "Rede reservada (IANA)"
 
     # verifico se o endereco e zeroconf
-    if ((int(enderecoB[0]) == 169) and (int(enderecoB[1]) == 254) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 169) and (int(enderecoB[1]) == 254)):
         return "Zeroconf"
 
     # verifico se o endereco e privado
-    if ((int(enderecoB[0]) == 172) and (int(enderecoB[1]) == 16) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 172) and (int(enderecoB[1]) == 16)):
         return "Rede privada"
 
     # verifico se o endereco e reservada
-    if ((int(enderecoB[0]) == 191) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 191) and (int(enderecoB[1]) == 255)):
         return "Rede reservada (IANA)"
 
     # verifico se o endereco e de documentacao
-    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 2) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 2)):
         return "Documentacao"
 
     # verifico se o endereco e ipv6 para ipv4
-    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 88) and (int(enderecoB[2]) == 99) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 88) and (int(enderecoB[2]) == 99)):
         return "Rede ipv6 para ipv4"
 
     # verifico se o endereco e privado
-    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 168) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 192) and (int(enderecoB[1]) == 168)):
         return "Rede privada"
 
     # verifico se o endereco e para testes de benchmark de redes
-    if ((int(enderecoB[0]) == 198) and (int(enderecoB[1]) == 18) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 198) and (int(enderecoB[1]) == 18)):
         return "Rede para testes de benchmark"
 
     # verifico se o endereco e reservado
-    if ((int(enderecoB[0]) == 223) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 255) and (int(enderecoB[3]) == 0)):
-        return "Rede privada"
+    if ((int(enderecoB[0]) == 223) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 255)):
+        return "Rede reservada"
 
     # verifico se o endereco e multicast
-    if ((int(enderecoB[0]) == 224) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 224)):
         return "Rede multicast (rede classe D)"
 
     # verifico se o endereco e classe E
-    if ((int(enderecoB[0]) == 240) and (int(enderecoB[1]) == 0) and (int(enderecoB[2]) == 0) and (int(enderecoB[3]) == 0)):
+    if ((int(enderecoB[0]) == 240)):
         return "Rede reservada (classe E)"
 
     # verifico se o endereco e broadcast
     if ((int(enderecoB[0]) == 255) and (int(enderecoB[1]) == 255) and (int(enderecoB[2]) == 255) and (int(enderecoB[3]) == 255)):
         return "Rede Broadcast"
 
-    # verifico se o endereco comeca com 127
-    if (int(enderecoB[0]) == 127):
-        return False
-
-    # verifico se o endereco possui apenas o identificador 255
+    # verifico se o endereco nao e nem classe A, B ou C
     if not ((classe_ip(enderecoB) == "A") or (classe_ip(enderecoB) == "B") or (classe_ip(enderecoB) == "C")):
         return False
 
