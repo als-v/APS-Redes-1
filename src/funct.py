@@ -404,7 +404,7 @@ def quantidadehosts(endereco):
             if (j == "0"):
                 count_zero = count_zero + 1
     
-    qtd_hosts = (2 ** count_zero)
+    qtd_hosts = (2 ** count_zero) - 2
 
     if (qtd_hosts == 1):
         return 0
